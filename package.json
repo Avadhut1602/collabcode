@@ -32,5 +32,9 @@
     "@types/react-dom": "^19.2.7",
     "concurrently": "^8.2.2",
     "oxlint": "^1.81.0"
+  },
+  "optionalDependencies": {
+    "@rolldown/binding-linux-x64-gnu": "1.2.11",
+    "lightningcss-linux-x64-gnu": "1.33.0"
   }
 }

@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .vercel
+package-lock.json
 *.zip
 
 # Editor directories and files
@@ -28,3 +29,4 @@ server/.env
 *.sw?
 
 .vercel
+package-lock.json
