@@ -43,8 +43,10 @@ const connectDB = async () => {
       isReady = true;
       return conn;
     } catch (fallbackErr) {
-      console.error('[MongoDB] Critical: Failed to start embedded MongoDB fallback:', fallbackErr.message);
-      throw fallbackErr;
+      console.error('[MongoDB] Warning: Failed to start embedded MongoDB fallback:', fallbackErr.message);
+      console.log('[MongoDB] CollabCode server will continue running. You can set MONGO_URI in Render environment variables for persistent cloud MongoDB Atlas.');
+      isReady = false;
+      return null;
     }
   }
 };
