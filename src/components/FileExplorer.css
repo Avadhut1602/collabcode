@@ -1,0 +1,232 @@
+/* src/components/FileExplorer.css */
+.file-explorer-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--sidebar-bg);
+  user-select: none;
+}
+
+.explorer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.explorer-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.explorer-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.action-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.action-icon-btn:hover {
+  background-color: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.explorer-search {
+  position: relative;
+  padding: 0.4rem 0.65rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.search-icon-sm {
+  position: absolute;
+  left: 1.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-input-sm {
+  width: 100%;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem 0.25rem 1.65rem;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.search-input-sm:focus {
+  border-color: var(--border-focus);
+}
+
+.inline-create-form {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  background-color: var(--surface-hover);
+}
+
+.inline-input {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--border-focus);
+  border-radius: 3px;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  padding: 0.15rem 0.35rem;
+  outline: none;
+}
+
+/* File Tree List */
+.file-tree-list {
+  list-style: none;
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.35rem 0;
+}
+
+.file-empty-hint {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.file-tree-item,
+.folder-tree-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all 0.12s ease;
+}
+
+.file-tree-item:hover,
+.folder-tree-item:hover {
+  background-color: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.file-tree-item.active {
+  background-color: rgba(59, 130, 246, 0.12);
+  color: var(--primary-accent);
+  border-left-color: var(--primary-accent);
+  font-weight: 500;
+}
+
+.item-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.folder-caret {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.folder-icon {
+  color: #eab308;
+  flex-shrink: 0;
+}
+
+.file-name,
+.folder-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-item-actions {
+  display: none;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.file-tree-item:hover .file-item-actions,
+.folder-tree-item:hover .file-item-actions {
+  display: flex;
+}
+
+.file-action-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.file-action-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--surface-active);
+}
+
+.file-action-btn.delete-btn:hover {
+  color: var(--accent-rose);
+}
+
+.rename-form {
+  flex: 1;
+}
+
+.rename-input {
+  width: 100%;
+  background: var(--surface-color);
+  border: 1px solid var(--border-focus);
+  border-radius: 3px;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  padding: 0.1rem 0.3rem;
+  outline: none;
+}
+
+/* Ext Icons */
+.ext-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.ext-js { background: rgba(234, 179, 8, 0.2); color: #eab308; }
+.ext-ts { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+.ext-py { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+.ext-cpp, .ext-c { background: rgba(236, 72, 153, 0.2); color: #ec4899; }
+.ext-java { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+.ext-html { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+.ext-css { background: rgba(14, 165, 233, 0.2); color: #0ea5e9; }
+.ext-json { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+.ext-md { background: rgba(100, 116, 139, 0.2); color: #94a3b8; }
+.ext-default { color: var(--text-muted); }

@@ -1,0 +1,171 @@
+/* src/components/UserList.css */
+.userlist-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--sidebar-bg);
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.userlist-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.userlist-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.userlist-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.userlist-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--surface-hover);
+  color: var(--text-secondary);
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+}
+
+.userlist-items {
+  list-style: none;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.user-item:hover {
+  background: var(--surface-hover);
+}
+
+.user-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid var(--surface-color);
+}
+
+.online-dot.online {
+  background-color: var(--accent-emerald);
+}
+
+.online-dot.offline {
+  background-color: var(--text-muted);
+}
+
+.user-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.user-name-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.15rem;
+}
+
+.user-name {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-role-row {
+  display: flex;
+  align-items: center;
+}
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.role-owner { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.role-admin { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.role-editor { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+.role-viewer { background: rgba(100, 116, 139, 0.15); color: #94a3b8; }
+
+.user-admin-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.role-select {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.7rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.remove-member-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-member-btn:hover {
+  color: var(--accent-rose);
+  background: rgba(239, 68, 68, 0.1);
+}

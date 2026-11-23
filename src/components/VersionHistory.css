@@ -1,0 +1,240 @@
+/* src/components/VersionHistory.css */
+.version-history-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--sidebar-bg);
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.version-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.version-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.snapshot-form {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.snapshot-input {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.6rem;
+  flex: 1;
+}
+
+.save-snapshot-btn {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+}
+
+.version-timeline-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.version-empty-hint {
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.version-item {
+  padding: 0.85rem;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.version-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.version-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-accent);
+}
+
+.version-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.version-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+
+.version-author {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.version-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.5rem;
+}
+
+.diff-btn {
+  font-size: 0.75rem;
+}
+
+.restore-btn {
+  font-size: 0.75rem;
+  color: var(--accent-amber);
+}
+
+.restore-btn:hover {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+/* Diff Modal */
+.diff-modal-content {
+  max-width: 850px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.diff-modal-body {
+  padding: 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.diff-file-selector {
+  margin-bottom: 1rem;
+}
+
+.diff-file-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.diff-file-pills {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.diff-file-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.diff-file-pill.active {
+  background: var(--surface-hover);
+  color: var(--primary-accent);
+  border-color: var(--border-focus);
+}
+
+.diff-viewer-container {
+  background: #090e17;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+}
+
+.diff-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.diff-line td {
+  padding: 0.15rem 0.5rem;
+  line-height: 1.4;
+}
+
+.diff-num {
+  width: 35px;
+  text-align: right;
+  color: var(--text-muted);
+  user-select: none;
+  font-size: 0.7rem;
+}
+
+.diff-marker {
+  width: 20px;
+  text-align: center;
+  user-select: none;
+  font-weight: 700;
+}
+
+.diff-same {
+  color: #94a3b8;
+}
+
+.diff-add {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.diff-add .diff-marker {
+  color: #10b981;
+}
+
+.diff-del {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.diff-del .diff-marker {
+  color: #ef4444;
+}
+
+.diff-text code {
+  white-space: pre-wrap;
+}
+
+.diff-empty {
+  padding: 3rem;
+  text-align: center;
+  color: var(--text-muted);
+}

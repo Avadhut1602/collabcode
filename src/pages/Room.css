@@ -1,0 +1,509 @@
+/* src/pages/Room.css */
+.workspace-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-color);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Toast Notifications */
+.workspace-toast {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-focus);
+  color: var(--text-primary);
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-xl);
+  font-size: 0.85rem;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Loading & Error Screens */
+.workspace-loading-screen,
+.workspace-error-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.loading-spinner-icon {
+  color: var(--primary-accent);
+  animation: pulse 1.5s infinite;
+}
+
+/* 1. Top Header Toolbar */
+.workspace-top-toolbar {
+  height: 48px;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+.toolbar-left-cluster {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-dashboard-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.back-dashboard-btn:hover {
+  background-color: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.workspace-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.workspace-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.room-code-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--surface-hover);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.room-code-tag:hover {
+  border-color: var(--primary-accent);
+  color: var(--primary-accent);
+}
+
+.room-code-tag strong {
+  color: var(--primary-accent);
+}
+
+.workspace-save-status {
+  font-size: 0.72rem;
+  color: var(--accent-cyan);
+}
+
+.toolbar-right-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.header-collaborator-avatars {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.header-avatar-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 2px solid var(--header-bg);
+  margin-left: -6px;
+}
+
+.header-avatar-circle:first-child {
+  margin-left: 0;
+}
+
+.more-collaborators {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-left: 0.35rem;
+}
+
+.run-code-btn {
+  background-color: #10b981;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.run-code-btn:hover:not(:disabled) {
+  background-color: #059669;
+}
+
+.btn-executing {
+  opacity: 0.7;
+}
+
+/* 2. Main 3-Panel Body */
+.workspace-body-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* =========================================
+   LEFT SECTION: Activity Bar + Panel
+   ========================================= */
+.workspace-left-section {
+  display: flex;
+  width: 260px;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  flex-shrink: 0;
+  transition: width 0.18s ease;
+}
+
+.workspace-root.left-collapsed .workspace-left-section {
+  width: 48px;
+}
+
+.activity-bar-strip {
+  width: 48px;
+  background-color: var(--bg-color);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 0;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.activity-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.activity-icon-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--surface-hover);
+}
+
+.activity-icon-btn.active {
+  color: var(--primary-accent);
+  background-color: rgba(59, 130, 246, 0.12);
+  border-left: 2px solid var(--primary-accent);
+}
+
+.left-panel-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================
+   CENTER SECTION: Tabs + Monaco + Output
+   ========================================= */
+.workspace-center-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--editor-bg);
+}
+
+.editor-tabs-strip {
+  height: 36px;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  user-select: none;
+}
+
+.tabs-scroll-area {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow-x: auto;
+}
+
+.editor-file-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 100%;
+  padding: 0 0.85rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background-color: var(--surface-color);
+  border-right: 1px solid var(--border-subtle);
+  cursor: pointer;
+  border-top: 2px solid transparent;
+  transition: all 0.12s ease;
+  white-space: nowrap;
+}
+
+.editor-file-tab:hover {
+  background-color: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.editor-file-tab.active {
+  background-color: var(--editor-bg);
+  color: var(--text-primary);
+  border-top-color: var(--primary-accent);
+  font-weight: 500;
+}
+
+.tab-icon {
+  color: #38bdf8;
+}
+
+.tab-unsaved-dot {
+  color: var(--accent-amber);
+  font-size: 0.65rem;
+  margin-left: 2px;
+}
+
+.tab-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 3px;
+  margin-left: 2px;
+}
+
+.tab-close-btn:hover {
+  background-color: var(--surface-active);
+  color: var(--text-primary);
+}
+
+.editor-subtoolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+}
+
+.breadcrumb-path {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.subtool-btn {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.45rem;
+}
+
+.subtool-btn.active {
+  color: var(--primary-accent);
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+.font-size-select {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.monaco-wrapper {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.no-file-selected {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.workspace-bottom-console {
+  height: 220px;
+  flex-shrink: 0;
+  transition: height 0.18s ease;
+}
+
+.workspace-bottom-console.collapsed {
+  height: 38px;
+}
+
+/* Teammate Live Cursor Decorators in Monaco */
+.teammate-cursor-line {
+  border-left: 2px solid #3b82f6 !important;
+  position: relative;
+}
+
+.teammate-cursor-tag {
+  display: inline-block;
+  background-color: #3b82f6;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0 4px;
+  border-radius: 2px 2px 2px 0;
+  position: relative;
+  top: -16px;
+  line-height: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* =========================================
+   RIGHT SECTION: AI Assistant & Team Chat
+   ========================================= */
+.workspace-right-section {
+  width: 340px;
+  background-color: var(--surface-color);
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: width 0.18s ease;
+}
+
+.workspace-right-section.collapsed {
+  width: 44px;
+}
+
+.right-panel-header {
+  height: 38px;
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  user-select: none;
+}
+
+.right-tab-switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.right-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.right-tab-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--surface-hover);
+}
+
+.right-tab-btn.active {
+  color: var(--text-primary);
+  background-color: var(--surface-color);
+  font-weight: 600;
+}
+
+.collapse-side-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.collapse-side-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--surface-hover);
+}
+
+.right-panel-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  .workspace-left-section {
+    position: absolute;
+    left: 0;
+    top: 48px;
+    bottom: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-xl);
+  }
+  .workspace-right-section {
+    position: absolute;
+    right: 0;
+    top: 48px;
+    bottom: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-xl);
+  }
+  .hide-mobile {
+    display: none !important;
+  }
+}

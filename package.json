@@ -1,0 +1,34 @@
+{
+  "name": "collab-code",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm run dev --prefix server\" \"vite\"",
+    "dev:direct": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"node server/server.js\" \"vite\"",
+    "server": "node server/server.js",
+    "client": "vite",
+    "seed": "node server/seed.js",
+    "client:dev": "vite",
+    "client:build": "vite build",
+    "client:preview": "vite preview",
+    "client:lint": "oxlint"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
+    "axios": "^1.21.1",
+    "lucide-react": "^1.77.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4",
+    "socket.io-client": "^4.8.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "concurrently": "^8.2.2",
+    "oxlint": "^1.81.0",
+    "vite": "^8.3.0"
+  }
+}
