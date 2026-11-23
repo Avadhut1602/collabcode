@@ -3,7 +3,7 @@ services:
     name: collabcode
     env: node
     plan: free
-    buildCommand: rm -f package-lock.json && npm install && npm install --prefix server --ignore-scripts && npm run build
+    buildCommand: npm install --prefix server --ignore-scripts
     startCommand: node server/server.js
     envVars:
       - key: NODE_ENV
