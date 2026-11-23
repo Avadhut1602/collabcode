@@ -8,7 +8,9 @@ let mongodInstance = null;
 let isReady = false;
 
 const connectDB = async () => {
-  const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/coding_platform';
+  const uri =
+    process.env.MONGO_URI ||
+    'mongodb+srv://avadhutdhotre_db_user:Avadhut%401234@cluster0.iavg9yh.mongodb.net/collabcode?retryWrites=true&w=majority';
 
   try {
     const conn = await mongoose.connect(uri, {
