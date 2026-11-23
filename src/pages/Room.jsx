@@ -42,8 +42,15 @@ import AIPanel from '../components/AIPanel';
 import ChatPanel from '../components/ChatPanel';
 import './Room.css';
 
-// Socket server URL fallback
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+// Socket server URL fallback:
+// 1. Explicit VITE_SOCKET_URL environment variable if set
+// 2. http://localhost:5000 if running Vite dev server on port 5173
+// 3. Same origin for unified production deployments
+const SOCKET_URL =
+  import.meta.env.VITE_SOCKET_URL ||
+  (typeof window !== 'undefined' && window.location.port === '5173'
+    ? 'http://localhost:5000'
+    : (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5000'));
 
 export default function Room() {
   const { id } = useParams();

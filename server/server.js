@@ -77,96 +77,111 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Root endpoint: returns friendly developer dashboard HTML in browser
-app.get('/', (req, res) => {
-  if (req.accepts('html')) {
-    return res.send(`
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <title>CollabCode Server API</title>
-        <style>
-          body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0b0f19;
-            color: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-          }
-          .card {
-            background: #111827;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            max-width: 540px;
-            text-align: center;
-            border: 1px solid #1f293d;
-          }
-          .badge {
-            display: inline-block;
-            background: #10b981;
-            color: #fff;
-            padding: 0.35rem 0.85rem;
-            border-radius: 9999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-          }
-          h1 { margin: 0 0 0.5rem 0; font-size: 1.7rem; color: #38bdf8; }
-          p { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; }
-          .btn {
-            display: inline-block;
-            background: #3b82f6;
-            color: white;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-          }
-          .endpoints {
-            text-align: left;
-            background: #06090e;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1.5rem;
-            font-family: monospace;
-            font-size: 0.85rem;
-            color: #a5f3fc;
-            line-height: 1.6;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="card">
-          <span class="badge">● CollabCode Backend Online</span>
-          <h1>CollabCode API & Real-time Server</h1>
-          <p>WebSocket collaboration engine, multi-language execution proxy, and AI pairing service are active.</p>
-          <a class="btn" href="http://localhost:5173" target="_blank">Launch CollabCode Client (localhost:5173) →</a>
-          <div class="endpoints">
-            <strong>Active Services:</strong><br/>
-            • WebSocket (Socket.IO): Cursors, Presence & Code Sync<br/>
-            • Execution Engine: /api/execute/run (JS, Python, C, C++, Java)<br/>
-            • AI Assistant: /api/ai/query<br/>
-            • Workspaces & Multi-file: /api/rooms<br/>
-            • Authentication: /api/auth
-          </div>
-        </div>
-      </body>
-      </html>
-    `);
-  }
+// Static client serving for production (Render, Railway, Docker, Monolith)
+const fs = require('fs');
+const distPath = path.join(__dirname, '..', 'dist');
 
-  res.json({
-    status: 'online',
-    platform: 'CollabCode',
-    message: 'CollabCode Express & Socket.IO server running successfully!',
-    frontendApp: 'http://localhost:5173',
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  // SPA fallback for all non-API GET routes
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/socket.io')) {
+      return next();
+    }
+    res.sendFile(path.join(distPath, 'index.html'));
   });
-});
+} else {
+  // Root endpoint: returns developer status page when dist build is absent
+  app.get('/', (req, res) => {
+    if (req.accepts('html')) {
+      return res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <title>CollabCode Server API</title>
+          <style>
+            body {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+              background: #0b0f19;
+              color: #f8fafc;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              margin: 0;
+            }
+            .card {
+              background: #111827;
+              padding: 2.5rem;
+              border-radius: 12px;
+              box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+              max-width: 540px;
+              text-align: center;
+              border: 1px solid #1f293d;
+            }
+            .badge {
+              display: inline-block;
+              background: #10b981;
+              color: #fff;
+              padding: 0.35rem 0.85rem;
+              border-radius: 9999px;
+              font-size: 0.85rem;
+              font-weight: 600;
+              margin-bottom: 1rem;
+            }
+            h1 { margin: 0 0 0.5rem 0; font-size: 1.7rem; color: #38bdf8; }
+            p { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; }
+            .btn {
+              display: inline-block;
+              background: #3b82f6;
+              color: white;
+              text-decoration: none;
+              padding: 0.75rem 1.5rem;
+              border-radius: 8px;
+              font-weight: 600;
+            }
+            .endpoints {
+              text-align: left;
+              background: #06090e;
+              padding: 1rem;
+              border-radius: 8px;
+              margin-top: 1.5rem;
+              font-family: monospace;
+              font-size: 0.85rem;
+              color: #a5f3fc;
+              line-height: 1.6;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="card">
+            <span class="badge">● CollabCode Backend Online</span>
+            <h1>CollabCode API & Real-time Server</h1>
+            <p>WebSocket collaboration engine, multi-language execution proxy, and AI pairing service are active.</p>
+            <a class="btn" href="http://localhost:5173" target="_blank">Launch CollabCode Client (localhost:5173) →</a>
+            <div class="endpoints">
+              <strong>Active Services:</strong><br/>
+              • WebSocket (Socket.IO): Cursors, Presence & Code Sync<br/>
+              • Execution Engine: /api/execute/run (JS, Python, C, C++, Java)<br/>
+              • AI Assistant: /api/ai/query<br/>
+              • Workspaces & Multi-file: /api/rooms<br/>
+              • Authentication: /api/auth
+            </div>
+          </div>
+        </body>
+        </html>
+      `);
+    }
+
+    res.json({
+      status: 'online',
+      platform: 'CollabCode',
+      message: 'CollabCode Express & Socket.IO server running successfully!',
+      frontendApp: 'http://localhost:5173',
+    });
+  });
+}
 
 // Central error handler
 app.use((err, req, res, next) => {
