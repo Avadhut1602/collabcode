@@ -13,7 +13,7 @@
     "client:build": "vite build",
     "client:preview": "vite preview",
     "client:lint": "oxlint",
-    "build": "vite build",
+    "build": "npm install --prefix server --ignore-scripts",
     "start": "node server/server.js"
   },
   "dependencies": {
